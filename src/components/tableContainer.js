@@ -1,22 +1,22 @@
 import React from "react";
 import Jumbotron from "./Jumbotron";
 import getEmployees from "../utils/API";
-import { MDBDATable } from 'mdbreact';
-import { render } from "@testing-library/react";
+import { MDBDataTable } from 'mdbreact';
 
-class tableContainer extends React.Component {
+
+class TableContainer extends React.Component {
   state = {
     employees: [],
     employeesInfo: []
-  }
+  };
 
   componentDidMount() {
     this.loadEmployees();
   }
-}
+
 
 loadEmployees = () => [
-  getInfo()
+  getEmployees()
     .then(response => response.data.results)
     .then(data => {
       this.ListeningStateChangedEvent({ employees: data })
@@ -42,8 +42,10 @@ loadEmployees = () => [
         }
       )
     });
+    return employees;
   }
-  render() {
+
+render() {
     const data = {
       columns: [
         {
@@ -75,8 +77,20 @@ loadEmployees = () => [
       ],
       rows: this.state.employeesInfo
     };
-    return (
-      <Jumbotron />
 
-    )
+    return (
+      <div>
+      <Jumbotron />
+      <section className="container">
+        <MDBDataTable
+        entries={25}
+        hover
+        data={data}
+        />
+      </section>
+      </div>
+    );
   }
+}
+
+export default TableContainer;
