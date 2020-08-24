@@ -19,9 +19,9 @@ loadEmployees = () => [
   getEmployees()
     .then(response => response.data.results)
     .then(data => {
-      this.ListeningStateChangedEvent({ employees: data })
+      this.setState({ employees: data })
     }).then(async () => {
-      this.ListeningStateChangedEvent({ employeesInfo: this.buildData(), isLoading: false })
+      this.setState({ employeesInfo: this.buildData(), isLoading: false })
     }).catch((err) => {
       console.log(err);
     })
@@ -55,18 +55,18 @@ render() {
         },
         {
           label: 'First Name',
-          field: 'firstName',
-          width: 150
+          field: 'first',
+          width: 250
         },
         {
           label: 'Last Name',
-          field: 'lastName',
+          field: 'last',
           width: 150
         },
         {
           label: 'Phone Number',
-          field: 'phone',
-          width: 150
+          field: 'phoneNumber',
+          width: 300
         },
         {
           label: 'Email',
@@ -83,7 +83,7 @@ render() {
       <Jumbotron />
       <section className="container">
         <MDBDataTable
-        entries={25}
+        entries={10, 20, 50, 100}
         hover
         data={data}
         />
