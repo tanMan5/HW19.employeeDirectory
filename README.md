@@ -38,4 +38,4 @@ I was able to create an app using Create React APP.  In the application I was ab
 
 ## Example
 Main
-![main](public/assets/completed.gif)
+![main](public/assets/example.gif)
