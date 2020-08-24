@@ -1,39 +1,82 @@
 import React from "react";
-import { useCountContext } from "../utils/GlobalState";
+import Jumbotron from "./Jumbotron";
+import getEmployees from "../utils/API";
+import { MDBDATable } from 'mdbreact';
+import { render } from "@testing-library/react";
 
-function TodoList() {
-    const [state, dispatch] = useCountContext();
+class tableContainer extends React.Component {
+  state = {
+    employees: [],
+    employeesInfo: []
+  }
+
+  componentDidMount() {
+    this.loadEmployees();
+  }
 }
 
-return (
-    <div className="container text-center">
-      <h1>Create a Todo List!</h1>
-      <form className="form-group mt-5" onSubmit={handleSubmit}>
-        <input
-          className="form-control"
-          ref={inputRef}
-          placeholder="Start typing what you need to do..."
-        />
-        <button className="btn btn-success mt-3 mb-5" type="submit">
-          Add to List
-        </button>
-      </form>
-      <h4>My Todo List:</h4>
-      <ul className="list-group">
-        {items.map((item, index) => (
-          <li className="list-group-item" key={item.id}>
-            {item.name}{" "}
-            <button
-              className="btn btn-danger ml-5"
-              onClick={() => dispatch({ type: "remove", index })}
-            >
-              X Remove
-            </button>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+loadEmployees = () => [
+  getInfo()
+    .then(response => response.data.results)
+    .then(data => {
+      this.ListeningStateChangedEvent({ employees: data })
+    }).then(async () => {
+      this.ListeningStateChangedEvent({ employeesInfo: this.buildData(), isLoading: false })
+    }).catch((err) => {
+      console.log(err);
+    })
+  ];
 
+  buildData = () => {
+    let employees = this.state.employees.map((employee) => {
+      return (
+        {
+          employeePicture: <img
+          src={employee.picture.medium}
+          alt='employee'
+          />,
+          first: employee.name.first,
+          last: employee.name.last,
+          phoneNumber: employee.phone,
+          email: employee.email
+        }
+      )
+    });
+  }
+  render() {
+    const data = {
+      columns: [
+        {
+          label: 'Employee Picture',
+          field: 'employeePicture',
+          width: 150
+        },
+        {
+          label: 'First Name',
+          field: 'firstName',
+          width: 150
+        },
+        {
+          label: 'Last Name',
+          field: 'lastName',
+          width: 150
+        },
+        {
+          label: 'Phone Number',
+          field: 'phone',
+          width: 150
+        },
+        {
+          label: 'Email',
+          field: 'email',
+          width: 150
+        }
 
-export default TodoList;
+      ],
+      rows: this.state.employeesInfo
+    };
+    return (
+      <Jumbotron />
+
+    )
+  }
