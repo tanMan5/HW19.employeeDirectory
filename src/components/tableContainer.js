@@ -83,7 +83,7 @@ render() {
       <Jumbotron />
       <section className="container">
         <MDBDataTable
-        entries={10, 20, 50, 100}
+        entries={10}
         hover
         data={data}
         />

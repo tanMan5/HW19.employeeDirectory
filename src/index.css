@@ -10,3 +10,22 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
 }
+
+.jumbotron {
+  background: rgb(84, 186, 233);
+background: linear-gradient(90deg, rgb(103, 184, 216) 0%, rgb(72, 236, 195) 50%, rgb(38, 183, 209) 100%);
+}
+
+.text {
+  color: rgb(252, 253, 253);
+  font-weight: bold;
+}
+
+.sorting {
+  color: rgb(38, 183, 209);
+}
+
+label {
+  color: rgb(38, 240, 200);
+  
+}
