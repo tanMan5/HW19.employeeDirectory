@@ -2,7 +2,7 @@
   "name": "employees-directory",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://tanman5.github.io/HW19.employeesDirectory/",
+  "homepage": "https://tanman5.github.io/HW19.employeesDirectory",
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
